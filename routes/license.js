@@ -11,8 +11,8 @@ router.post('/activate', auth, async (req, res) => {
   const { licenseKey } = req.body;
 
   // WICHTIG: Ersetze diese Platzhalter durch deine echten Werte
-  const CRYPTOLENS_TOKEN = 'WyIxMDk4Njc5ODYiLCJUeS9XL2k3TE8zajJaZ1I2MmVJTmNleUNnaTlRU3E1cVBLSExWMUxlIl0='; 
-  const PRODUCT_ID = '30250=';
+  const CRYPTOLENS_TOKEN = 'WyIxMTEwOTY3MjYiLCJuMjRaeU5oNlBzcmIvampFbzE5UHRhKzMxMEh2aExXdlphakVXSkp1Il0='; 
+  const PRODUCT_ID = '30250';
 
   if (!licenseKey) {
     return res.status(400).json({ msg: 'Lizenzschlüssel ist erforderlich' });
