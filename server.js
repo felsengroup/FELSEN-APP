@@ -17,6 +17,7 @@ app.use('/api/profile', require('./routes/profile')); // <-- Neue Route hier ein
 app.use('/api/license', require('./routes/license')); // <-- Neue Route hier einfügen
 app.use('/api/ea', require('./routes/ea')); // <-- Neue Route hier einfügen
 app.use('/api/mt5', require('./routes/mt5')); // <-- Neue Route hier einfügen
+app.use('/api/webhooks', require('./routes/webhook')); // <-- Neue Route hier einfügen
 
 const PORT = process.env.PORT || 5000;
 
