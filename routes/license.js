@@ -11,7 +11,7 @@ router.post('/activate', auth, async (req, res) => {
   const { licenseKey } = req.body;
 
   // WICHTIG: Ersetze diese Platzhalter durch deine echten Werte
-  const CRYPTOLENS_TOKEN = 'WyIxMDk4Njc3MjQiLCJEejNrS0Vac0FmRFZPTXBGVlFBcVZ2MFdUdjFrU0c5VGViandyT0ZBIl0='; 
+  const CRYPTOLENS_TOKEN = 'WyIxMDk4Njc5ODYiLCJUeS9XL2k3TE8zajJaZ1I2MmVJTmNleUNnaTlRU3E1cVBLSExWMUxlIl0='; 
   const PRODUCT_ID = '30250=';
 
   if (!licenseKey) {
