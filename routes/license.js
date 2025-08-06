@@ -19,13 +19,12 @@ router.post('/activate', auth, async (req, res) => {
   }
 
   try {
-    const response = await axios.post('https://api.cryptolens.io/api/key/Activate', null, {
-      params: {
-        token: CRYPTOLENS_TOKEN,
-        ProductId: PRODUCT_ID,
-        Key: licenseKey,
-        MachineCode: req.user.id,
-      },
+    const response = await axios.post('https://api.cryptolens.io/api/key/Activate', {
+      token: CRYPTOLENS_TOKEN,
+      ProductId: PRODUCT_ID,
+      Key: licenseKey,
+      MachineCode: req.user.id,
+    });
       headers: {
         'Content-Type': 'application/json',
       },
