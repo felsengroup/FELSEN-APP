@@ -2,10 +2,21 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const User = require('../models/User');
-const EaSettings = require('../models/EaSettings'); // Importiere das EA-Modell
-const Mt5Account = require('../models/Mt5Account'); // Importiere das MT5-Modell
+const EaSettings = require('../models/EaSettings');
+const Mt5Account = require('../models/Mt5Account');
 
-// ... GET-Route für das Profil bleibt unverändert ...
+// @route    GET /api/profile
+// @desc     Benutzerprofil abrufen
+// @access   Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server-Fehler');
+  }
+});
 
 // @route    PATCH /api/profile
 // @desc     Aktualisiere Benutzerdaten (E-Mail, Passwort)
@@ -20,7 +31,7 @@ router.patch('/', auth, async (req, res) => {
     }
 
     if (email) user.email = email;
-    if (password) user.password = password; // Die pre-save-Middleware wird das Passwort hashen
+    if (password) user.password = password;
 
     await user.save();
     res.json({ msg: 'Profil erfolgreich aktualisiert' });
@@ -35,7 +46,6 @@ router.patch('/', auth, async (req, res) => {
 // @access   Private
 router.delete('/', auth, async (req, res) => {
   try {
-    // Finde und lösche alle verknüpften Daten in der Datenbank
     await EaSettings.findOneAndRemove({ user: req.user.id });
     await Mt5Account.findOneAndRemove({ user: req.user.id });
     await User.findByIdAndRemove(req.user.id);
